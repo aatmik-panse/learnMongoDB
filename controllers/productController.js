@@ -1,13 +1,10 @@
 const ProductModel = require("../models/product");
 
-exports.sendHello = (req, res) => {
-  res.send("Hello World");
-};
-
 exports.createProduct = async (req, res) => {
   //working
   try {
     // const product = new ProductModel(req.body);
+
     const product = new ProductModel({
       product_name: req.body.product_name,
       price: req.body.price,
@@ -28,8 +25,8 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   //working
   try {
-    const products = await ProductModel.find({});
-    res.send(products);
+    const product = await ProductModel.find({});
+    res.send(product);
   } catch (err) {
     console;
     res.send(err);

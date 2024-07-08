@@ -1,12 +1,13 @@
 const exp = require("express");
 require("dotenv").config();
 
-const mongoos = require("mongoose");
+const mongoose = require("mongoose");
+
 const app = require("express")();
 
-app.use(exp.json());
-
-mongoos
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connection Successful");
@@ -19,4 +20,8 @@ app.listen(1010, () => {
   console.log("Server started at port 1010");
 });
 
-const db = mongoos.connection;
+const db = mongoose.connection;
+
+app.use(exp.json());
+app.use("/api/product", productRoutes);
+app.use("/api/user", userRoutes);

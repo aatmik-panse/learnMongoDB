@@ -1,4 +1,6 @@
-const productSchema = new mongoos.Schema({
+const mongoose = require("mongoose");
+
+const productSchema = new mongoose.Schema({
   product_name: {
     type: String,
     required: true,
@@ -18,4 +20,4 @@ const productSchema = new mongoos.Schema({
   },
 });
 
-const ProductModel = mongoos.model("Product", productSchema);
+module.exports = mongoose.model("product", productSchema);

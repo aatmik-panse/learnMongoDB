@@ -3,16 +3,14 @@ const router = require("express").Router();
 const productControllers = require("../controllers/productController");
 const { default: mongoose } = require("mongoose");
 
-router.get("/", productControllers.sendHello);
+router.post("/", productControllers.createProduct);
 
-router.post("/api/products", productControllers.createProduct);
+router.get("/", productControllers.getAllProducts);
 
-router.get("/api/products", productControllers.getAllProducts);
+router.get("/:id", productControllers.getProductById);
 
-router.get("/api/products/:id", productControllers.getProductById);
+router.put("/:id", productControllers.updateProduct);
 
-router.put("/api/products/:id", productControllers.updateProduct);
+router.delete("/:id", productControllers.deleteProduct);
 
-router.delete("/api/products/:id", productControllers.deleteProduct);
-
-module.exports = mongoose.model("products", productSchema);
+module.exports = router;
